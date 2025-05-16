@@ -1,19 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AZURIFY.CC ✨</title>
+    <title>AZURIFY.CC ✨ Premium Tools</title>
     <style>
-      @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-        100% { transform: translateY(0px); }
-      }
-      h1 { animation: float 3s ease-in-out infinite; }
+        body { 
+            font-family: 'Arial', sans-serif;
+            background: #0f0f0f;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 { 
+            color: #ff00aa;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ff00aa80;
+        }
+        p { 
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        
+        /* Floating Download Button */
+        .download-btn {
+            display: inline-block;
+            background: #ff00aa;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px #ff00aa80;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px #ff00aa80;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Glow effect */
+        .glow {
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #ff00aa; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #ff00aa; }
+        }
     </style>
 </head>
 <body>
-    <h1>AZURIFY.CC</h1>
-    <p>Premium tools loading... ⚡</p>
+    <h1 class="glow">AZURIFY.CC</h1>
+    <p>Premium multi-tool for all your needs</p>
     <p>Made with 💗 by Azure</p>
+    
+    <!-- DOWNLOAD BUTTON -->
+    <a href="https://github.com/SuperJos10/Azurify/releases/download/ok/AZURIFY_V1.0.0.zip" 
+       class="download-btn">
+       DOWNLOAD NOW (v1.0.0)
+    </a>
+    
+    <!-- Optional: Add tool features list -->
+    <div style="margin-top: 50px; opacity: 0.7;">
+        <p>✨ Bruter | Generator | Scraper ✨</p>
+    </div>
 </body>
 </html>
