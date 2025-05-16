@@ -3,74 +3,89 @@
 <head>
     <title>AZURIFY.CC ✨ Premium Tools</title>
     <style>
-        body { 
+        body {
             font-family: 'Arial', sans-serif;
-            background: #0f0f0f;
+            background: #000000;
             color: white;
             text-align: center;
-            padding: 50px;
             margin: 0;
-        }
-        h1 { 
-            color: #ff00aa;
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #ff00aa80;
-        }
-        p { 
-            font-size: 1.2em;
-            opacity: 0.8;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
-        /* Floating Download Button */
+        h1 {
+            color: #ff00aa;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 0, 170, 0.5);
+        }
+        
+        p {
+            color: #cccccc;
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+        
+        /* Download Button */
         .download-btn {
             display: inline-block;
-            background: #ff00aa;
+            background: linear-gradient(135deg, #ff00aa, #ff0066);
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
+            padding: 12px 30px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.2em;
             margin-top: 30px;
-            box-shadow: 0 5px 15px #ff00aa80;
+            box-shadow: 0 4px 15px rgba(255, 0, 170, 0.4);
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px #ff00aa80;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            border: none;
+            cursor: pointer;
         }
         
-        /* Glow effect */
-        .glow {
-            animation: glow 1.5s ease-in-out infinite alternate;
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 170, 0.6);
+            background: linear-gradient(135deg, #ff0066, #ff00aa);
         }
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #fff, 0 0 10px #ff00aa; }
-            to { text-shadow: 0 0 10px #fff, 0 0 20px #ff00aa; }
+        
+        /* ASCII Art Style Header */
+        .ascii-art {
+            color: #ff00aa;
+            font-family: monospace;
+            white-space: pre;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
-    <h1 class="glow">AZURIFY.CC</h1>
+    <div class="ascii-art">
+ ▄▄▄      ▒███████▒ █    ██  ██▀███   ██▓  █████▒▓██   ██▓
+▒████▄    ▒ ▒ ▒ ▄▀░ ██  ▓██▒▓██ ▒ ██▒▓██▒▓██   ▒  ▒██  ██▒
+▒██  ▀█▄  ░ ▒ ▄▀▒░ ▓██  ▒██░▓██ ░▄█ ▒▒██▒▒████ ░   ▒██ ██░
+░██▄▄▄▄██   ▄▀▒   ░▓▓█  ░██░▒██▀▀█▄  ░██░░▓█▒  ░   ░ ▐██▓░
+ ▓█   ▓██▒▒███████▒▒▒█████▓ ░██▓ ▒██▒░██░░▒█░      ░ ██▒▓░
+ ▒▒   ▓▒█░░▒▒ ▓░▒░▒░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░▓   ▒ ░       ██▒▒▒ 
+  ▒   ▒▒ ░░░▒ ▒ ░ ▒░░▒░ ░ ░   ░▒ ░ ▒░ ▒ ░ ░       ▓██ ░▒░ 
+  ░   ▒   ░ ░ ░ ░ ░ ░░░ ░ ░   ░░   ░  ▒ ░ ░ ░     ▒ ▒ ░░  
+      ░  ░  ░ ░       ░        ░      ░           ░ ░     
+          ░                                       ░ ░     
+    </div>
+    
+    <h1>AZURIFY.CC</h1>
     <p>Premium multi-tool for all your needs</p>
     <p>Made with 💗 by Azure</p>
     
     <!-- DOWNLOAD BUTTON -->
     <a href="https://github.com/SuperJos10/Azurify/releases/download/ok/AZURIFY_V1.0.0.zip" 
        class="download-btn">
-       DOWNLOAD NOW (v1.0.0)
+       ⚡ DOWNLOAD AZURIFY V1.0.0 ⚡
     </a>
-    
-    <!-- Optional: Add tool features list -->
-    <div style="margin-top: 50px; opacity: 0.7;">
-        <p>✨ Bruter | Generator | Scraper ✨</p>
-    </div>
 </body>
 </html>
