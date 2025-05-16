@@ -3,14 +3,12 @@
 <head>
     <title>AZURIFY.CC ✨</title>
     <style>
-        body { 
-            background: #0f0f0f; 
-            color: #ff00aa; 
-            text-align: center;
-            font-family: Arial;
-            padding: 50px;
-        }
-        h1 { font-size: 3em; }
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+      }
+      h1 { animation: float 3s ease-in-out infinite; }
     </style>
 </head>
 <body>
