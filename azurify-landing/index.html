@@ -30,7 +30,6 @@
             margin: 5px 0;
         }
         
-        /* Download Button */
         .download-btn {
             display: inline-block;
             background: linear-gradient(135deg, #ff00aa, #ff0066);
@@ -52,8 +51,7 @@
             box-shadow: 0 8px 25px rgba(255, 0, 170, 0.6);
             background: linear-gradient(135deg, #ff0066, #ff00aa);
         }
-        
-        /* ASCII Art Style Header */
+
         .ascii-art {
             color: #ff00aa;
             font-family: monospace;
@@ -83,9 +81,28 @@
     <p>Made with 💗 by Azure</p>
     
     <!-- DOWNLOAD BUTTON -->
-    <a href="https://github.com/SuperJos10/Azurify/releases/download/ok/AZURIFY_V1.0.0.zip" 
-       class="download-btn">
+    <a href="#" class="download-btn" onclick="downloadAndRedirect(event)">
        ⚡ DOWNLOAD AZURIFY V1.0.0 ⚡
     </a>
+
+    <script>
+    function downloadAndRedirect(event) {
+        event.preventDefault();
+
+        const fileUrl = 'https://github.com/SuperJos10/Azurify/releases/download/ok/AZURIFY_V1.0.0.zip';
+        const redirectUrl = 'https://azurestocks.sellauth.com';
+
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = '';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        setTimeout(() => {
+            window.location.href = redirectUrl;
+        }, 1000);
+    }
+    </script>
 </body>
 </html>
