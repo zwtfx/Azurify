@@ -3,6 +3,10 @@
 <head>
     <title>AZURIFY.CC ✨ Premium Tools</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background: #000000;
@@ -17,7 +21,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 10px 40px; /* Reduced padding to move it higher */
             width: 100%;
             box-sizing: border-box;
             position: fixed;
@@ -25,12 +29,13 @@
             left: 0;
             z-index: 1000;
         }
-        
+
         .nav-links {
             display: flex;
             gap: 20px;
+            align-items: center;
         }
-        
+
         .nav-link {
             color: #ff00aa;
             text-decoration: none;
@@ -38,7 +43,7 @@
             font-size: 1.1em;
             transition: color 0.3s ease;
         }
-        
+
         .nav-link:hover {
             color: #ff0066;
             text-shadow: 0 0 5px rgba(255, 0, 102, 0.5);
@@ -50,9 +55,68 @@
             white-space: pre;
             line-height: 1.3;
             font-size: 12px;
-            margin-right: auto; /* Pushes the nav links to the right */
+            margin-right: auto;
         }
         
+        /* The '?' button style */
+        .admin-button {
+            background: none;
+            border: 2px solid #ff00aa;
+            border-radius: 50%;
+            color: #ff00aa;
+            width: 30px;
+            height: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-button:hover {
+            background: #ff00aa;
+            color: #000000;
+            box-shadow: 0 0 10px #ff00aa;
+        }
+
+        /* Message Box Styling (to replace alert()) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 2000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border: 1px solid #ff00aa;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            text-align: center;
+        }
+
+        .close-button {
+            color: #ff00aa;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         /* Main Content Styling */
         .content-section {
             padding: 100px 20px 50px;
@@ -63,20 +127,20 @@
             align-items: center;
             box-sizing: border-box;
         }
-        
+
         h1.title {
             color: #ff00aa;
             font-size: 2.5em;
             margin-bottom: 10px;
             text-shadow: 0 0 10px rgba(255, 0, 170, 0.5);
         }
-        
+
         h2 {
             color: #ff00aa;
             font-size: 2em;
             margin-bottom: 20px;
         }
-        
+
         p {
             color: #cccccc;
             font-size: 1.1em;
@@ -84,7 +148,7 @@
             max-width: 800px;
             line-height: 1.6;
         }
-        
+
         .download-btn {
             display: inline-block;
             background: linear-gradient(135deg, #ff00aa, #ff0066);
@@ -100,7 +164,7 @@
             border: none;
             cursor: pointer;
         }
-        
+
         .download-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 0, 170, 0.6);
@@ -109,51 +173,92 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Bar at the top right -->
     <div class="navbar">
         <div class="ascii-art">
- ▄▄▄      ▒███████▒ █    ██  ██▀███   ██▓  █████▒▓██   ██▓
-▒████▄    ▒ ▒ ▒ ▄▀░ ██  ▓██▒▓██ ▒ ██▒▓██▒▓██   ▒  ▒██  ██▒
-▒██  ▀█▄  ░ ▒ ▄▀▒░ ▓██  ▒██░▓██ ░▄█ ▒▒██▒▒████ ░   ▒██ ██░
-░██▄▄▄▄██   ▄▀▒   ░▓▓█  ░██░▒██▀▀█▄  ░██░░▓█▒  ░   ░ ▐██▓░
- ▓█   ▓██▒▒███████▒▒▒█████▓ ░██▓ ▒██▒░██░░▒█░      ░ ██▒▓░
- ▒▒   ▓▒█░░▒▒ ▓░▒░▒░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░▓   ▒ ░       ██▒▒▒ 
-  ▒   ▒▒ ░░░▒ ▒ ░ ▒░░▒░ ░ ░   ░▒ ░ ▒░ ▒ ░ ░       ▓██ ░▒░ 
-  ░   ▒   ░ ░ ░ ░ ░ ░░░ ░ ░   ░░   ░  ▒ ░ ░ ░     ▒ ▒ ░░  
-      ░  ░  ░ ░       ░        ░      ░           ░ ░     
-          ░                                       ░ ░     
+            <!-- ASCII ART -->
+▄▄▄      ▒███████▒ █    ██  ██▀███   ██▓  █████▒▓██   ██▓
+▒████▄    ▒ ▒ ▒ ▄▀░ ██  ▓██▒▓██ ▒ ██▒▓██▒▓██   ▒  ▒██  ██▒
+▒██  ▀█▄  ░ ▒ ▄▀▒░ ▓██  ▒██░▓██ ░▄█ ▒▒██▒▒████ ░   ▒██ ██░
+░██▄▄▄▄██   ▄▀▒   ░▓▓█  ░██░▒██▀▀█▄  ░██░░▓█▒  ░   ░ ▐██▓░
+ ▓█   ▓██▒▒███████▒▒▒█████▓ ░██▓ ▒██▒░██░░▒█░      ░ ██▒▓░
+ ▒▒   ▓▒█░░▒▒ ▓░▒░▒░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░▓   ▒ ░       ██▒▒▒ 
+  ▒   ▒▒ ░░░▒ ▒ ░ ▒░░▒░ ░ ░   ░▒ ░ ▒░ ▒ ░ ░       ▓██ ░▒░ 
+  ░   ▒   ░ ░ ░ ░ ░ ░░░ ░ ░   ░░   ░  ▒ ░ ░ ░     ▒ ▒ ░░  
+      ░  ░  ░ ░       ░        ░      ░           ░ ░     
+          ░                                       ░ ░     
         </div>
         <div class="nav-links">
             <a href="#downloads" class="nav-link">Downloads</a>
             <a href="#about-website" class="nav-link">About The Website</a>
             <a href="#about-me" class="nav-link">About Me</a>
+            <button class="admin-button" onclick="promptPassword()">?</button>
+        </div>
+    </div>
+
+    <!-- The message box Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
         </div>
     </div>
     
+    <!-- Main Home Section -->
     <div id="home" class="content-section">
         <h1 class="title">AZURIFY.CC</h1>
         <p>Premium tools for all your needs</p>
         <p>Made with 💗 by Azure</p>
     </div>
 
+    <!-- Downloads Section -->
     <div id="downloads" class="content-section">
         <h2>Downloads ⬇️</h2>
         <p>This is where you can find the latest versions of my tools and projects. I regularly update my projects to provide new features and ensure a seamless experience.</p>
         <a href="#" class="download-btn" onclick="downloadAndRedirect(event)">
             ⚡ DOWNLOAD AZURIFY V1.0.0 ⚡
         </a>
+        <!-- Placeholder for the upload form -->
+        <div id="upload-section" style="display:none; margin-top: 20px;">
+            <h3>New Uploads Unlocked!</h3>
+            <p style="color: yellow;">This is a placeholder for a secure upload feature. In a real application, this would connect to a backend server.</p>
+            <p>File uploads are currently not supported in this client-side demo.</p>
+        </div>
     </div>
 
+    <!-- About The Website Section -->
     <div id="about-website" class="content-section">
         <h2>About The Website 🌐</h2>
         <p>AZURIFY.CC is a hub for premium digital tools, designed to simplify complex tasks and empower users with efficient solutions. My mission is to provide high-quality, reliable software that meets your needs.</p>
     </div>
 
+    <!-- About Me Section -->
     <div id="about-me" class="content-section">
         <h2>About Me 🙋‍♂️</h2>
         <p>Hello, I'm Azure, the creator of AZURIFY.CC! I'm a passionate developer who loves building innovative tools and solutions. I'm dedicated to creating software that is not only powerful but also easy and enjoyable to use. If you have any feedback or ideas, feel free to reach out!</p>
     </div>
 
     <script>
+        const correctPassword = "Rah32132!!!";
+        
+        function promptPassword() {
+            const passwordModal = document.getElementById('passwordModal');
+            const modalMessage = document.getElementById('modalMessage');
+            const userPassword = prompt("Please enter the password to unlock uploads:");
+            
+            if (userPassword === correctPassword) {
+                modalMessage.textContent = "Success! The upload feature is now unlocked. This would typically connect to a secure backend.";
+                document.getElementById('upload-section').style.display = 'block';
+            } else {
+                modalMessage.textContent = "Incorrect password. The upload feature remains locked.";
+            }
+            passwordModal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+
         function downloadAndRedirect(event) {
             event.preventDefault();
             const fileUrl = 'https://github.com/SuperJos10/Azurify/releases/download/ok/AZURIFY_V1.0.0.zip';
