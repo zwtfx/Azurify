@@ -37,7 +37,7 @@
     "description": "TACO AND TACO HAT TRAITS",
     "price": "7.00 AUD",
     "image": "/assets/los-trala-taco.png",
-    "link": "STRIPE_PAYMENT_LINK_HERE"
+    "link": "https://buy.stripe.com/aFa6oJbnAfIEcCz6ol48004"
   },
   {
     "id": "diamond-torrtugini",
@@ -45,7 +45,7 @@
     "description": "GOATED BRAINROT FOR A GOATED PRICE!",
     "price": "6.50 AUD",
     "image": "/assets/diamond-torrtugini.png",
-    "link": "STRIPE_PAYMENT_LINK_HERE"
+    "link": "https://buy.stripe.com/00weVfajwbso9qndQN48005"
   },
   {
     "id": "chachechi-crab",
@@ -53,7 +53,7 @@
     "description": "CRAB AND TACO HAT TRAITS",
     "price": "6.50 AUD",
     "image": "/assets/chachechi-crab.png",
-    "link": "STRIPE_PAYMENT_LINK_HERE"
+    "link": "https://buy.stripe.com/00wbJ31N0dAw0TR5kh48006"
   },
   {
     "id": "la-cucaracha-crab",
@@ -73,7 +73,7 @@
   },
   {
     "id": "sammyni-spyderini",
-    "title": "Sammyni Spyderini (975k/s)",
+    "title": "Sammyni Spyderini (975K/s)",
     "description": "COMES WITH UFO TRAIT",
     "price": "5.00 AUD",
     "image": "/assets/sammyni-spyderini.png",
@@ -81,7 +81,7 @@
   },
   {
     "id": "fragola-la-la-la",
-    "title": "Fragola la la la (450k/s)",
+    "title": "Fragola la la la (450K/s)",
     "description": "GOATED BRAINROT FOR A GOATED PRICE!",
     "price": "4.00 AUD",
     "image": "/assets/fragola-la-la-la.png",
