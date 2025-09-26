@@ -10,39 +10,87 @@
   .card { background: #111; border-radius: 12px; padding: 20px; transition: 0.3s; cursor: pointer; }
   .card:hover { box-shadow: 0 0 20px #0ff; transform: translateY(-5px); }
   .card img { width: 200px; height: 200px; object-fit: cover; border-radius: 12px; }
+  .discord-logo {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    filter: drop-shadow(0 0 5px #0ff) drop-shadow(0 0 20px #0ff);
+  }
+  .discord-logo:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px #0ff) drop-shadow(0 0 30px #0ff);
+  }
 </style>
 </head>
 <body class="p-10">
 
 <h1 class="text-5xl font-bold text-center neon-text mb-12">KCWZ SAB STORE</h1>
 
+<!-- Discord logo in top-right corner -->
+<a href="https://discord.gg/yExXAmrr6T" target="_blank">
+  <img src="https://files.catbox.moe/oyttg3.webp" alt="Discord" class="discord-logo">
+</a>
+
 <div class="grid md:grid-cols-3 gap-8" id="products-grid"></div>
 
 <script>
-async function loadProducts() {
-  try {
-    const res = await fetch('products.json'); // Make sure products.json is in the same folder
-    const products = await res.json();
-    const container = document.getElementById('products-grid');
-
-    products.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'card text-center';
-      card.innerHTML = `
-        <img src="https://files.catbox.moe/4nes5h.png" alt="${p.title}" class="mx-auto mb-4">
-        <h2 class="text-2xl font-bold">${p.title}</h2>
-        <p class="mb-4 text-gray-400">${p.description}</p>
-        <p class="text-xl font-bold mb-4">$${p.price}</p>
-        <button class="bg-cyan-400 text-black px-4 py-2 rounded font-bold hover:bg-white">Buy Now</button>
-      `;
-      card.querySelector('button').addEventListener('click', () => {
-        window.location.href = p.link;
-      });
-      container.appendChild(card);
-    });
-  } catch (err) {
-    console.error('Failed to load products.json', err);
+// Fallback products if products.json cannot be loaded
+const fallbackProducts = [
+  {
+    id: "brainrot-pass",
+    title: "Golden Esok Sekolah (37.5M/s)",
+    description: "GOATED BRAINROT FOR A GOATED PRICE!",
+    price: "15.00 AUD",
+    link: "https://buy.stripe.com/eVq00lezM9kgfOL3c948000"
+  },
+  {
+    id: "vip-glow",
+    title: "Diamond La Cucaracha (4.9M/s)",
+    description: "COMES WITH FIRE AND TACO HAT TRAITS",
+    price: "8.00 AUD",
+    link: "https://buy.stripe.com/7sY8wRcrEcws6ebcMJ48001"
+  },
+  {
+    id: "brainrot-bundle",
+    title: "Galaxy Los Trala (7M/s)",
+    description: "COMES WITH BUBBLEGUM AND TACO HAT TRAITS",
+    price: "10.00 AUD",
+    link: "https://buy.stripe.com/6oU8wR4Zc1RO31ZfYV48002"
   }
+];
+
+async function loadProducts() {
+  const container = document.getElementById('products-grid');
+  let products = [];
+
+  try {
+    const res = await fetch('products.json');
+    if (!res.ok) throw new Error('Network response not ok');
+    products = await res.json();
+  } catch (err) {
+    console.warn('Failed to load products.json, using fallback products.', err);
+    products = fallbackProducts;
+  }
+
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card text-center';
+    card.innerHTML = `
+      <img src="https://files.catbox.moe/4nes5h.png" alt="${p.title}" class="mx-auto mb-4">
+      <h2 class="text-2xl font-bold">${p.title}</h2>
+      <p class="mb-4 text-gray-400">${p.description}</p>
+      <p class="text-xl font-bold mb-4">$${p.price}</p>
+      <button class="bg-cyan-400 text-black px-4 py-2 rounded font-bold hover:bg-white">Buy Now</button>
+    `;
+    card.querySelector('button').addEventListener('click', () => {
+      window.location.href = p.link;
+    });
+    container.appendChild(card);
+  });
 }
 
 loadProducts();
