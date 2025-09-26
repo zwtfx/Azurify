@@ -61,7 +61,7 @@
     "description": "COMES WITH CRAB TRAIT",
     "price": "6.00 AUD",
     "image": "/assets/la-cucaracha-crab.png",
-    "link": "STRIPE_PAYMENT_LINK_HERE"
+    "link": "https://buy.stripe.com/dRmeVfcrE540dGDbIF48007"
   },
   {
     "id": "la-cucaracha-taco-hat",
@@ -69,7 +69,7 @@
     "description": "COMES WITH TACO HAT TRAIT",
     "price": "6.00 AUD",
     "image": "/assets/la-cucaracha-taco-hat.png",
-    "link": "STRIPE_PAYMENT_LINK_HERE"
+    "link": "https://buy.stripe.com/6oU8wR1N03ZW4636ol48008"
   },
   {
     "id": "sammyni-spyderini",
@@ -77,7 +77,7 @@
     "description": "COMES WITH UFO TRAIT",
     "price": "5.00 AUD",
     "image": "/assets/sammyni-spyderini.png",
-    "link": "STRIPE_PAYMENT_LINK_HERE"
+    "link": "https://buy.stripe.com/14A14pgHUbso4633c948009"
   },
   {
     "id": "fragola-la-la-la",
@@ -85,6 +85,6 @@
     "description": "GOATED BRAINROT FOR A GOATED PRICE!",
     "price": "4.00 AUD",
     "image": "/assets/fragola-la-la-la.png",
-    "link": "STRIPE_PAYMENT_LINK_HERE"
+    "link": "https://buy.stripe.com/dRm14p77k0NK0TR9Ax4800a"
   }
 ]
