@@ -10,7 +10,7 @@
     color: white;
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 40px 20px; /* padding around edges */
+    padding: 40px 20px;
   }
 
   .neon-text {
@@ -22,7 +22,7 @@
 
   #products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -31,7 +31,7 @@
   .card {
     background: #111;
     border-radius: 12px;
-    padding: 20px;
+    padding: 25px;
     transition: 0.3s;
     cursor: pointer;
     display: flex;
@@ -45,8 +45,8 @@
   }
 
   .card img {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 1rem;
@@ -55,7 +55,7 @@
   .card button {
     background: #0ff;
     color: black;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 8px;
     font-weight: bold;
     transition: 0.3s;
@@ -85,7 +85,6 @@
 </head>
 <body>
 
-<!-- Discord logo fixed top-right -->
 <a href="https://discord.gg/yExXAmrr6T" target="_blank">
   <img src="https://files.catbox.moe/oyttg3.webp" alt="Discord" class="discord-logo">
 </a>
@@ -106,27 +105,7 @@ async function loadProducts() {
   } catch (err) {
     console.warn('Failed to load products.json. Using fallback products.', err);
     products = [
-      {
-        id: "brainrot-pass",
-        title: "Golden Esok Sekolah (37.5M/s)",
-        description: "GOATED BRAINROT FOR A GOATED PRICE!",
-        price: "15.00 AUD",
-        link: "https://buy.stripe.com/eVq00lezM9kgfOL3c948000"
-      },
-      {
-        id: "vip-glow",
-        title: "Diamond La Cucaracha (4.9M/s)",
-        description: "COMES WITH FIRE AND TACO HAT TRAITS",
-        price: "8.00 AUD",
-        link: "https://buy.stripe.com/7sY8wRcrEcws6ebcMJ48001"
-      },
-      {
-        id: "brainrot-bundle",
-        title: "Galaxy Los Trala (7M/s)",
-        description: "COMES WITH BUBBLEGUM AND TACO HAT TRAITS",
-        price: "10.00 AUD",
-        link: "https://buy.stripe.com/6oU8wR4Zc1RO31ZfYV48002"
-      }
+      { id: "brainrot-pass", title: "Golden Esok Sekolah (37.5M/s)", description: "GOATED BRAINROT FOR A GOATED PRICE!", price: "15.00 AUD", link: "https://buy.stripe.com/eVq00lezM9kgfOL3c948000" }
     ];
   }
 
