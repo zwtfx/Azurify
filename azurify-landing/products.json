@@ -1,0 +1,26 @@
+[
+  {
+    "id": "brainrot-pass",
+    "title": "Brainrot Pass",
+    "description": "Unlock exclusive perks in Steal a Brainrot.",
+    "price": "4.99",
+    "image": "/assets/brainrot-pass.png",
+    "link": "https://buy.stripe.com/test_link_1"
+  },
+  {
+    "id": "vip-glow",
+    "title": "VIP Glow",
+    "description": "Show off with a glowing neon aura.",
+    "price": "9.99",
+    "image": "/assets/vip-glow.png",
+    "link": "https://buy.stripe.com/test_link_2"
+  },
+  {
+    "id": "brainrot-bundle",
+    "title": "Brainrot Bundle",
+    "description": "Includes all perks + special badge.",
+    "price": "19.99",
+    "image": "/assets/brainrot-bundle.png",
+    "link": "https://buy.stripe.com/test_link_3"
+  }
+]
