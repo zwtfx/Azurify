@@ -1,65 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>KCWZ SAB STORE</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { background: #0a0a0f; font-family: 'Poppins', sans-serif; color: white; }
-    .neon-text { text-shadow: 0 0 5px #0ff, 0 0 20px #0ff; }
-    .card { background: #111; border-radius: 12px; padding: 20px; transition: 0.3s; }
-    .card:hover { box-shadow: 0 0 20px #0ff; transform: translateY(-5px); }
-    .btn { background: #0ff; color: black; padding: 10px 20px; border-radius: 8px; font-weight: bold; transition: 0.2s; }
-    .btn:hover { background: white; color: black; }
-  </style>
+<meta charset="UTF-8">
+<title>KCWZ SAB STORE</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background: #0a0a0f; color: white; font-family: 'Poppins', sans-serif; }
+  .neon-text { text-shadow: 0 0 5px #0ff, 0 0 20px #0ff; }
+  .card { background: #111; border-radius: 12px; padding: 20px; transition: 0.3s; cursor: pointer; }
+  .card:hover { box-shadow: 0 0 20px #0ff; transform: translateY(-5px); }
+</style>
 </head>
 <body class="p-10">
-  <h1 class="text-5xl font-bold text-center neon-text mb-12">KCWZ SAB STORE</h1>
 
-  <div class="grid md:grid-cols-3 gap-8">
-    <!-- Product 1 -->
-    <div class="card text-center">
-      <img src="https://placehold.co/200x200" alt="Product Icon" class="mx-auto mb-4 rounded-lg">
-      <h2 class="text-2xl font-bold">Brainrot Pass</h2>
-      <p class="mb-4 text-gray-400">Unlock exclusive perks in Steal a Brainrot.</p>
-      <p class="text-xl font-bold mb-4">$4.99</p>
-      <button class="btn" onclick="checkout('prod_ABC123')">Buy Now</button>
-    </div>
+<h1 class="text-5xl font-bold text-center neon-text mb-12">KCWZ SAB STORE</h1>
 
-    <!-- Product 2 -->
-    <div class="card text-center">
-      <img src="https://placehold.co/200x200" alt="Product Icon" class="mx-auto mb-4 rounded-lg">
-      <h2 class="text-2xl font-bold">VIP Glow</h2>
-      <p class="mb-4 text-gray-400">Show off with a glowing neon aura.</p>
-      <p class="text-xl font-bold mb-4">$9.99</p>
-      <button class="btn" onclick="checkout('prod_DEF456')">Buy Now</button>
-    </div>
+<div class="grid md:grid-cols-3 gap-8" id="products-grid"></div>
 
-    <!-- Product 3 -->
-    <div class="card text-center">
-      <img src="https://placehold.co/200x200" alt="Product Icon" class="mx-auto mb-4 rounded-lg">
-      <h2 class="text-2xl font-bold">Brainrot Bundle</h2>
-      <p class="mb-4 text-gray-400">Includes all perks + special badge.</p>
-      <p class="text-xl font-bold mb-4">$19.99</p>
-      <button class="btn" onclick="checkout('prod_GHI789')">Buy Now</button>
-    </div>
-  </div>
+<script>
+async function loadProducts() {
+  try {
+    const res = await fetch('products.json'); // Make sure products.json is in the same folder
+    const products = await res.json();
+    const container = document.getElementById('products-grid');
 
-  <script src="https://js.stripe.com/v3/"></script>
-  <script>
-    const stripe = Stripe("pk_live_51SBZdPRp39p1foM6QfEulJQsS2LHDntKVONQQ7hFD1MN9TCqjhDT2aWLLTTXxxj5kfFuxZifx1DRcg6gieFi1FM3002miDsODo");
-
-    async function checkout(productId) {
-      // Call your backend to create a Checkout Session
-      const res = await fetch("/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId })
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card text-center';
+      card.innerHTML = `
+        <img src="${p.image}" alt="${p.title}" class="mx-auto mb-4 rounded-lg">
+        <h2 class="text-2xl font-bold">${p.title}</h2>
+        <p class="mb-4 text-gray-400">${p.description}</p>
+        <p class="text-xl font-bold mb-4">$${p.price}</p>
+        <button class="bg-cyan-400 text-black px-4 py-2 rounded font-bold hover:bg-white">Buy Now</button>
+      `;
+      card.querySelector('button').addEventListener('click', () => {
+        window.location.href = p.link;
       });
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error('Failed to load products.json', err);
+  }
+}
 
-      const { sessionId } = await res.json();
-      stripe.redirectToCheckout({ sessionId });
-    }
-  </script>
+loadProducts();
+</script>
 </body>
 </html>
