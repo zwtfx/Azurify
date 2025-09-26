@@ -1,26 +1,26 @@
 [
   {
     "id": "brainrot-pass",
-    "title": "Brainrot Pass",
-    "description": "Unlock exclusive perks in Steal a Brainrot.",
+    "title": "Golden Esok Sekolah (37.5M/s)",
+    "description": "GOATED BRAINROT FOR A GOATED PRICE!",
     "price": "14.99 AUD",
     "image": "/assets/brainrot-pass.png",
     "link": "https://buy.stripe.com/eVq00lezM9kgfOL3c948000"
   },
   {
     "id": "vip-glow",
-    "title": "VIP Glow",
-    "description": "Show off with a glowing neon aura.",
-    "price": "9.99",
+    "title": "Diamond La Cucaracha (4.9M/s)",
+    "description": "GOATED BRAINROT FOR A GOATED PRICE!",
+    "price": "7.99 AUD",
     "image": "/assets/vip-glow.png",
-    "link": "https://buy.stripe.com/test_link_2"
+    "link": "https://buy.stripe.com/7sY8wRcrEcws6ebcMJ48001"
   },
   {
     "id": "brainrot-bundle",
-    "title": "Brainrot Bundle",
-    "description": "Includes all perks + special badge.",
-    "price": "19.99",
+    "title": "Galaxy Los Trala (7M/s)",
+    "description": "GOATED BRAINROT FOR A GOATED PRICE!",
+    "price": "9.99 AUD",
     "image": "/assets/brainrot-bundle.png",
-    "link": "https://buy.stripe.com/test_link_3"
+    "link": "https://buy.stripe.com/6oU8wR4Zc1RO31ZfYV48002"
   }
 ]
