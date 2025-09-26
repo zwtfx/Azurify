@@ -2,51 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KCWZ SAB STORE - Checkout</title>
-  <script src="https://js.stripe.com/v3/"></script>
+  <title>KCWZ SAB STORE</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background: #0a0a0f; font-family: 'Poppins', sans-serif; color: white; }
     .neon-text { text-shadow: 0 0 5px #0ff, 0 0 20px #0ff; }
-    .card-box { padding: 20px; background: #111; border-radius: 12px; }
-    .stripe-input { padding: 10px; border-radius: 8px; background: #000; color: #0ff; }
-    button { background: #0ff; color: black; padding: 12px 20px; border-radius: 8px; font-weight: bold; transition: 0.2s; }
-    button:hover { background: white; color: black; }
+    .card { background: #111; border-radius: 12px; padding: 20px; transition: 0.3s; }
+    .card:hover { box-shadow: 0 0 20px #0ff; transform: translateY(-5px); }
+    .btn { background: #0ff; color: black; padding: 10px 20px; border-radius: 8px; font-weight: bold; transition: 0.2s; }
+    .btn:hover { background: white; color: black; }
   </style>
 </head>
-<body class="flex items-center justify-center h-screen">
-  <div class="card-box w-full max-w-md">
-    <h1 class="text-3xl font-bold text-center neon-text mb-6">KCWZ SAB STORE</h1>
+<body class="p-10">
+  <h1 class="text-5xl font-bold text-center neon-text mb-12">KCWZ SAB STORE</h1>
 
-    <form id="payment-form">
-      <div id="card-element" class="mb-4 p-3 border border-gray-700 rounded-lg bg-black"></div>
-      <button id="submit">Pay Now</button>
-      <p id="error-message" class="mt-2 text-red-500"></p>
-    </form>
+  <div class="grid md:grid-cols-3 gap-8">
+    <!-- Product 1 -->
+    <div class="card text-center">
+      <img src="https://placehold.co/200x200" alt="Product Icon" class="mx-auto mb-4 rounded-lg">
+      <h2 class="text-2xl font-bold">Brainrot Pass</h2>
+      <p class="mb-4 text-gray-400">Unlock exclusive perks in Steal a Brainrot.</p>
+      <p class="text-xl font-bold mb-4">$4.99</p>
+      <button class="btn" onclick="checkout('prod_ABC123')">Buy Now</button>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="card text-center">
+      <img src="https://placehold.co/200x200" alt="Product Icon" class="mx-auto mb-4 rounded-lg">
+      <h2 class="text-2xl font-bold">VIP Glow</h2>
+      <p class="mb-4 text-gray-400">Show off with a glowing neon aura.</p>
+      <p class="text-xl font-bold mb-4">$9.99</p>
+      <button class="btn" onclick="checkout('prod_DEF456')">Buy Now</button>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="card text-center">
+      <img src="https://placehold.co/200x200" alt="Product Icon" class="mx-auto mb-4 rounded-lg">
+      <h2 class="text-2xl font-bold">Brainrot Bundle</h2>
+      <p class="mb-4 text-gray-400">Includes all perks + special badge.</p>
+      <p class="text-xl font-bold mb-4">$19.99</p>
+      <button class="btn" onclick="checkout('prod_GHI789')">Buy Now</button>
+    </div>
   </div>
 
+  <script src="https://js.stripe.com/v3/"></script>
   <script>
-    const stripe = Stripe("pk_live_51SBZdPRp39p1foM6QfEulJQsS2LHDntKVONQQ7hFD1MN9TCqjhDT2aWLLTTXxxj5kfFuxZifx1DRcg6gieFi1FM3002miDsODo"); // Replace with your real publishable key
-    const elements = stripe.elements({ appearance: { theme: 'night' }});
-    const cardElement = elements.create("card", { style: { base: { color: "#0ff", fontSize: "16px" } }});
-    cardElement.mount("#card-element");
+    const stripe = Stripe("pk_live_51SBZdPRp39p1foM6QfEulJQsS2LHDntKVONQQ7hFD1MN9TCqjhDT2aWLLTTXxxj5kfFuxZifx1DRcg6gieFi1FM3002miDsODo");
 
-    const form = document.getElementById("payment-form");
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card: cardElement,
+    async function checkout(productId) {
+      // Call your backend to create a Checkout Session
+      const res = await fetch("/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId })
       });
 
-      if (error) {
-        document.getElementById("error-message").textContent = error.message;
-      } else {
-        // Send paymentMethod.id to your backend to complete the payment
-        console.log("PaymentMethod created:", paymentMethod.id);
-      }
-    });
+      const { sessionId } = await res.json();
+      stripe.redirectToCheckout({ sessionId });
+    }
   </script>
 </body>
 </html>
