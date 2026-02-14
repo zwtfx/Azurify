@@ -1,43 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Void</title>
-    <style>
-        body {
-            margin: 0;
-            background: black;
-            color: white;
-            font-family: monospace;
-        }
+  <title>Void Login</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        textarea {
-            width: 100vw;
-            height: 100vh;
-            background: black;
-            color: white;
-            border: none;
-            outline: none;
-            resize: none;
-            padding: 40px;
-            font-size: 16px;
-        }
-    </style>
+    .box {
+      text-align: center;
+    }
+
+    input {
+      background: black;
+      border: 1px solid #444;
+      color: white;
+      padding: 8px;
+      margin: 5px;
+      font-family: monospace;
+    }
+
+    button {
+      background: black;
+      border: 1px solid white;
+      color: white;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: white;
+      color: black;
+    }
+  </style>
 </head>
 <body>
-
-<textarea id="void" placeholder="write..."></textarea>
+  <div class="box">
+    <h2>Enter the Void</h2>
+    <input id="username" placeholder="username"><br>
+    <input id="password" type="password" placeholder="password"><br>
+    <button onclick="login()">Login</button>
+    <button onclick="register()">Register</button>
+    <p id="msg"></p>
+  </div>
 
 <script>
-    const area = document.getElementById("void");
+async function login() {
+  const res = await fetch("/api/login", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      username: username.value,
+      password: password.value
+    })
+  });
 
-    // Load saved text
-    area.value = localStorage.getItem("voidText") || "";
+  const data = await res.json();
 
-    // Save while typing
-    area.addEventListener("input", () => {
-        localStorage.setItem("voidText", area.value);
-    });
+  if (data.success) {
+    localStorage.setItem("user", username.value);
+    window.location.href = "/void.html";
+  } else {
+    msg.innerText = "Invalid login.";
+  }
+}
+
+async function register() {
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      username: username.value,
+      password: password.value
+    })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    msg.innerText = "Registered. You can login.";
+  } else {
+    msg.innerText = data.error;
+  }
+}
 </script>
-
 </body>
 </html>
