@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Void</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: monospace;
+      overflow: hidden;
+    }
+
+    .quote {
+      position: absolute;
+      max-width: 180px;
+      font-size: 14px;
+      opacity: 0;
+      animation: fadeIn 0.6s forwards;
+      text-shadow: 0 0 6px rgba(255,255,255,0.3);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    input {
+      position: absolute;
+      background: black;
+      border: 1px solid #555;
+      color: white;
+      font-family: monospace;
+      padding: 4px;
+      width: 180px;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+const GRID_SIZE_X = 200;
+const GRID_SIZE_Y = 100;
+
+const user = localStorage.getItem("user");
+if (!user) window.location.href = "/";
+
+loadQuotes();
+
+document.addEventListener("click", e => {
+  const gridX = Math.floor(e.clientX / GRID_SIZE_X);
+  const gridY = Math.floor(e.clientY / GRID_SIZE_Y);
+
+  const input = document.createElement("input");
+  input.style.left = gridX * GRID_SIZE_X + "px";
+  input.style.top = gridY * GRID_SIZE_Y + "px";
+
+  document.body.appendChild(input);
+  input.focus();
+
+  input.addEventListener("keydown", async ev => {
+    if (ev.key === "Enter") {
+      const text = input.value;
+      input.remove();
+
+      if (!text) return;
+
+      const res = await fetch("/api/post", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          username: user,
+          text,
+          gridX,
+          gridY
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        addQuote(text, user, gridX, gridY);
+      } else {
+        alert("Spot taken.");
+      }
+    }
+  });
+});
+
+async function loadQuotes() {
+  const res = await fetch("/api/quotes");
+  const quotes = await res.json();
+
+  quotes.forEach(q => {
+    addQuote(q.text, q.username, q.grid_x, q.grid_y, q.timestamp);
+  });
+}
+
+function addQuote(text, username, gx, gy, timestamp=null) {
+  const div = document.createElement("div");
+  div.className = "quote";
+  div.style.left = gx * GRID_SIZE_X + "px";
+  div.style.top = gy * GRID_SIZE_Y + "px";
+
+  const date = timestamp
+    ? new Date(timestamp)
+    : new Date();
+
+  const timeStr = date.toLocaleTimeString();
+  const dateStr = date.toLocaleDateString();
+
+  div.innerText = `"${text}" — ${username} [${timeStr} | ${dateStr}]`;
+
+  document.body.appendChild(div);
+}
+</script>
+
+</body>
+</html>
